@@ -1,0 +1,49 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: gls-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/proxy-body-size: "15m"
+
+spec:
+  tls:
+    - hosts:
+        - gls.gm
+        - www.gls.gm
+        - test.gls.gm
+
+      secretName: gls-gm-tls
+  rules:
+    - host: www.gls.gm
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: gls-website-svc
+                port:
+                  number: 80
+    - host: gls.gm
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: gls-website-svc
+                port:
+                  number: 80
+    - host: test.gls.gm
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: gls-website-test-svc
+                port:
+                  number: 80

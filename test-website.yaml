@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gls-website-test-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gls-website-test
+  template:
+    metadata:
+      labels:
+        app: gls-website-test
+    spec:
+      containers:
+        - name: gls-website-test
+          image: insistglobal/lecket:gls-website-001
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gls-website-test-svc
+spec:
+  selector:
+    app: gls-website-test
+  ports:
+    - name: gls-website-test
+      protocol: TCP
+      port: 80
+      targetPort: 80
