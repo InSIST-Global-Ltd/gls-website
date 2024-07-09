@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: gls-website
-          image: insistglobal/lecket:gls-website-003
+          image: insistglobal/lecket:gls-website-005
 
 ---
 apiVersion: v1
