@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-docker build -t  insistglobal/lecket:gls-website-005 .
-docker push insistglobal/lecket:gls-website-005
+docker build -t  insistglobal/lecket:gls-website-006 .
+docker push insistglobal/lecket:gls-website-006
